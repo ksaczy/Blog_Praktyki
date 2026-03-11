@@ -1,0 +1,23 @@
+$primary-font: 'Roboto', sans-serif;
+$text-color: #333;
+$content-max-width: 600px;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $primary-font;
+  color: $text-color;
+}
+
+.content {
+  max-width: $content-max-width;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+
+
+

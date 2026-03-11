@@ -1,0 +1,23 @@
+$primary-pink: #f1356d;
+$hover-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+
+.blog-preview {
+    padding: 10px 16px;
+    margin: 20px 0;
+    border-bottom: 1px solid #fafafa;
+    transition: box-shadow 0.3s ease;
+
+    h2 {
+        font-size: 20px;
+        color: $primary-pink;
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: #666;
+    }
+
+    &:hover {
+        box-shadow: $hover-shadow;
+    }
+}

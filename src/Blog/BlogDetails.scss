@@ -1,0 +1,34 @@
+$primary-pink: #f1356d;
+$white: #fff;
+$border-radius-std: 8px;
+
+.blog-details {
+    h2 {
+        font-size: 20px;
+        color: $primary-pink;
+        margin-bottom: 10px;
+    }
+
+    div {
+        margin: 20px 0;
+        line-height: 1.5;
+    }
+
+    button {
+        background: $primary-pink;
+        color: $white;
+        border: 0;
+        padding: 8px 16px;
+        border-radius: $border-radius-std;
+        cursor: pointer;
+        transition: opacity 0.2s ease;
+
+        &:hover {
+            background-color: darken($primary-pink, 10%);
+        }
+
+        &:active {
+            transform: scale(0.90);
+        }
+    }
+}

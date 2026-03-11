@@ -1,0 +1,28 @@
+$btn-bg: dimgrey;
+$btn-radius: 8px;
+$btn-padding: 5px;
+
+@mixin standard-button {
+    background-color: $btn-bg;
+    border: none;
+    border-radius: $btn-radius;
+    color: white;
+    padding: $btn-padding;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    margin: 3px;
+    &:hover {
+        background-color: darken($btn-bg, 10%);
+    }
+
+    &:active {
+        transform: scale(0.90);
+    }
+}
+
+.home {
+    button {
+        @include standard-button;
+    }
+}

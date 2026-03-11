@@ -1,0 +1,49 @@
+.galeria-page {
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    color: #f1356d;
+    margin-bottom: 30px;
+  }
+}
+
+.galeria-grid {
+  display: grid;
+  gap: 15px;
+
+  // Mobile : 1 obrazek w rzędzie
+  grid-template-columns: repeat(1, 1fr);
+
+  // Tablet: 2-3 obrazki w rzędzie
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  // Desktop: 4 obrazki w rzędzie
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.img-container {
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  aspect-ratio: 1 / 1;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+$primary: #f1356d;
+$text-color: #333;
+$background-color: #f2f2f2;
+
+.team{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+
+  section{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background: $background-color;
+    border-radius: 10px;
+    border: 1px solid $text-color;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    padding: 15px;
+
+    @media (min-width: 600px){
+      width: 42%;
+    }
+
+    &:hover{
+      box-shadow: 0 0 10px 7px rgba(0,0,0,0.2);
+    }
+  }
+
+  img{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+
+}

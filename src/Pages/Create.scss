@@ -1,0 +1,46 @@
+$primary-pink: #f1356d;
+$border-light: #ddd;
+
+.create {
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+
+    h2 {
+        font-size: 20px;
+        color: $primary-pink;
+        margin-bottom: 30px;
+    }
+
+    label {
+        text-align: left;
+        display: block;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 6px 10px;
+        margin: 10px 0;
+        border: 1px solid $border-light;
+        box-sizing: border-box;
+        display: block;
+    }
+
+    button {
+        background: $primary-pink;
+        color: #fff;
+        border: 0;
+        padding: 8px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: filter 0.2s;
+
+        &:hover {
+            background-color: darken($primary-pink, 10%);
+        }
+
+        &:active {
+            transform: scale(0.90);
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "blogs": [
+    {
+      "title": "The Princess is in Another Castle",
+      "body": "A quick update on the current rescue mission.\nWe are heading to the desert world next.",
+      "author": "mario",
+      "id": "4"
+    },
+    {
+      "title": "Best Fruit in the Kingdom",
+      "body": "A definitive guide to finding the tastiest berries.\nMelons are still my personal favorite!",
+      "author": "yoshi",
+      "id": "5"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

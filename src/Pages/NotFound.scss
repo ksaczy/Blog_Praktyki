@@ -1,0 +1,14 @@
+.container-base {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.NotFound {
+    @extend .container-base;
+    text-align: center;
+
+    h2 {
+        font-size: 10px;
+        margin-bottom: 10px;
+    }
+}
