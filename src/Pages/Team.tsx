@@ -53,7 +53,7 @@ const Team = () => {
         <div className="team">
             {members.map((member, i)=> (
                 <section key={i} className="pearson">
-                    <img src={'/images/'+member.img} alt={member.name}/>
+                    <img src={'/Images/'+member.img} alt={member.name}/>
                     <h2>{member.name} {member.surname}</h2>
                     <p>{member.description}</p>
                 </section>
