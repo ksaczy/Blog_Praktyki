@@ -42,15 +42,22 @@ const Galeria = () => {
     const { data: images, isLoading, error } = useFetch<PicsumImage[]>('https://picsum.photos/v2/list?limit=16');
 
     const [photoOpen, setPhotoOpen] = useState(false);
-    const [photoUrl, setPhotoUrl] = useState <string|null>(null);
+    const [currentIdx, setCurrentIdx] = useState <number|null>(null);
 
-    const handlePhotoClick = (imgUrl:string)=>{
+    const handlePhotoClick = (index: number)=>{
         setPhotoOpen(true);
-        setPhotoUrl(imgUrl);
+        setCurrentIdx(index);
     }
 
     const handleClose = () => {
         setPhotoOpen(false);
+    }
+
+    const handleNext = () => {
+        if(images && currentIdx)setCurrentIdx((currentIdx + 1)%images.length);
+    }
+    const handlePrev = () => {
+        if(images && currentIdx)setCurrentIdx((currentIdx - 1)%images.length);
     }
 
     return (
@@ -62,19 +69,24 @@ const Galeria = () => {
                 {isLoading && <div className="loading">Pobieranie zdjęć z serwera...</div>}
 
                 <div className="galeria-grid">
-                    {images && images.map((imgNum) => (
+                    {images && images.map((imgNum, index) => (
                         <div className="img-container" key={imgNum.id}>
                             <img
                                 src={imgNum.download_url}
                                 alt={`Zdjęcie ${imgNum}`}
-                                onClick={() => handlePhotoClick(imgNum.download_url)}
+                                onClick={() => handlePhotoClick(index)}
                             />
                         </div>
                     ))}
                 </div>
             </div>
 
-            {photoOpen && photoUrl && <BiggerPhoto photoSrc={photoUrl} close={handleClose} />}
+            {photoOpen && currentIdx && images && <BiggerPhoto
+                photoSrc={images[currentIdx]?.download_url||""}
+                close={handleClose}
+                next={handleNext}
+                prev={handlePrev}
+            />}
         </div>
     );
 };
