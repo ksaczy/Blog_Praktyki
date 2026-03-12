@@ -37,7 +37,7 @@ interface PicsumImage {
 }
 
 const Galeria = () => {
-    const { data: images, isLoading, error } = useFetch<PicsumImage[]>('https://picsum.photos/v2/list?limit=32');
+    const { data: images, isLoading, error } = useFetch<PicsumImage[]>('https://picsum.photos/v2/list?limit=16');
 
     return (
         <div className="galeria-page">
