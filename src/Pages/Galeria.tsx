@@ -61,13 +61,18 @@ const Galeria = () => {
     }
 
     return (
-        <div className="gallery">
             <div className="galeria-page">
                 <h1>Galeria</h1>
 
                 {error && <div className="error">{error}</div>}
                 {isLoading && <div className="loading">Pobieranie zdjęć z serwera...</div>}
-
+                {photoOpen && currentIdx!==null && images && <BiggerPhoto
+                    photoSrc={images[currentIdx]?.download_url||""}
+                    photoAlt={images[currentIdx]?.id||""}
+                    close={handleClose}
+                    next={handleNext}
+                    prev={handlePrev}
+                />}
                 <div className="galeria-grid">
                     {images && images.map((imgNum, index) => (
                         <div className="img-container" key={imgNum.id}>
@@ -80,15 +85,6 @@ const Galeria = () => {
                     ))}
                 </div>
             </div>
-
-            {photoOpen && currentIdx!==null && images && <BiggerPhoto
-                photoSrc={images[currentIdx]?.download_url||""}
-                photoAlt={images[currentIdx]?.id||""}
-                close={handleClose}
-                next={handleNext}
-                prev={handlePrev}
-            />}
-        </div>
     );
 };
 

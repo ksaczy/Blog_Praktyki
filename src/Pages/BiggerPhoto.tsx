@@ -1,3 +1,5 @@
+import { createPortal } from 'react-dom'
+
 
 interface Photo {
     photoSrc: string;
@@ -10,7 +12,7 @@ interface Photo {
 const BiggerPhoto = (image:Photo)=>{
 
 
-    return(
+    return createPortal(
         <div className="overlay" onClick={image.close}>
             <div className="bigger-photo">
                 <div className="close">✕</div>
@@ -18,7 +20,8 @@ const BiggerPhoto = (image:Photo)=>{
                 <img src={image.photoSrc} alt={image.photoAlt} className="photo"/>
                 <div className="next" onClick={(e) => {e.stopPropagation(); image.next()}}>→</div>
             </div>
-        </div>
+        </div>,
+        document.body
     )
 
 }
