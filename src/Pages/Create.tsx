@@ -6,12 +6,13 @@ const Create = () => {
     const [title,setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
+    const [date, setDate] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        const blog = {title, body, author};
+        const blog = {title, body, author, date};
 
         setIsLoading(true);
 
@@ -47,6 +48,9 @@ const Create = () => {
                     <option value="mario">mario</option>
                     <option value="yoshi">yoshi</option>
                 </select>
+                <label>Date:</label>
+                <input type="date" onChange={(e) => setDate(e.target.value)} />
+
                 {!isLoading && <button>Add Blog</button>}
                 {isLoading && <button disabled>Adding Blog...</button>}
             </form>
