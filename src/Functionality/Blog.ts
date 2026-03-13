@@ -3,4 +3,5 @@ export default interface Blog {
     title: string;
     author: string;
     body: string;
+    date: string;
 }
