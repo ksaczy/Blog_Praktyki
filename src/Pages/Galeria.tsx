@@ -54,10 +54,10 @@ const Galeria = () => {
     }
 
     const handleNext = () => {
-        if(images && currentIdx)setCurrentIdx((currentIdx + 1)%images.length);
+        if(images && currentIdx!==null)setCurrentIdx((currentIdx + 1)%images.length);
     }
     const handlePrev = () => {
-        if(images && currentIdx)setCurrentIdx((currentIdx - 1)%images.length);
+        if(images && currentIdx!==null)setCurrentIdx((currentIdx - 1 +images.length)%images.length);
     }
 
     return (
@@ -81,8 +81,9 @@ const Galeria = () => {
                 </div>
             </div>
 
-            {photoOpen && currentIdx && images && <BiggerPhoto
+            {photoOpen && currentIdx!==null && images && <BiggerPhoto
                 photoSrc={images[currentIdx]?.download_url||""}
+                photoAlt={images[currentIdx]?.id||""}
                 close={handleClose}
                 next={handleNext}
                 prev={handlePrev}

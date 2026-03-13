@@ -1,5 +1,24 @@
 $primary: #f1356d;
 
+@mixin changePhoto(){
+  background-color: transparent;
+  color: transparent;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  border-radius: 10px;
+  align-items: center;
+  height: 100%;
+  width: 15%;
+  z-index: 25;
+
+  &:hover{
+    transition: all 0.2s ease;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+  }
+}
+
 .galeria-page {
   padding: 20px;
 
@@ -35,6 +54,11 @@ $primary: #f1356d;
     outline: white solid 5px;
     border-radius: 5px;
 
+    @media (max-width: 600px) {
+      width: 80vw;
+      height: auto;
+    }
+
     .close{
       display: flex;
       position: absolute;
@@ -53,6 +77,20 @@ $primary: #f1356d;
       width: auto;
       height: 100%;
       border-radius: 10px;
+      @media (max-width: 600px) {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .next{
+      @include changePhoto;
+      top: 0;
+      right: 0;
+    }
+    .prev{
+      @include changePhoto;
+      left: 0;
     }
   }
 
@@ -91,7 +129,7 @@ $primary: #f1356d;
 
     &:hover {
       z-index: 10;
-      transform: scale(1.6);
+      transform: scale(1.2);
       outline: white solid 5px;
     }
 
