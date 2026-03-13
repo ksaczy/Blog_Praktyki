@@ -13,6 +13,7 @@ const BiggerPhoto = (image:Photo)=>{
     return(
         <div className="overlay" onClick={image.close}>
             <div className="bigger-photo">
+                <div className="close">✕</div>
                 <div className="prev" onClick={(e) => {e.stopPropagation(); image.prev()}}>←</div>
                 <img src={image.photoSrc} alt={image.photoAlt} className="photo"/>
                 <div className="next" onClick={(e) => {e.stopPropagation(); image.next()}}>→</div>
