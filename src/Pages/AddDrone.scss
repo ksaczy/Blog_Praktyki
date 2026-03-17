@@ -1,0 +1,65 @@
+@use '../Global' as *;
+
+.add-drone {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+
+  h1 {
+    color: $primary-pink;
+    margin-bottom: 30px;
+
+  }
+  h2{
+    color: $primary-pink;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .checkbox, .sensor-field{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-wrap: nowrap;
+    accent-color: $primary-pink;
+  }
+  .error{
+    color: red;
+  }
+
+  .date{
+    margin-top: 15px;
+  }
+
+  label {
+    text-align: left;
+    display: block;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0;
+    border: 1px solid $border-light;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  button {
+    background: $primary-pink;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: filter 0.2s;
+
+    &:hover {
+      background-color: darken($primary-pink, 10%);
+    }
+
+    &:active {
+      transform: scale(0.90);
+    }
+  }
+}
