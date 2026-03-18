@@ -54,7 +54,7 @@ const AddDrone = () => {
                 <input {...register("serialNumber")} type="text" placeholder="SN-XXXX-999" />
                 {errors.serialNumber && <p className="error">{errors.serialNumber?.message}</p>}
 
-                <h2>Specs</h2>
+                <h3>Specs</h3>
                 <label>Drone max speed:</label>
                 <input {...register("specs.maxSpeed")} type="number" placeholder="max speed" />
                 {errors.specs?.maxSpeed && <p className="error">{errors.specs.maxSpeed.message}</p>}
@@ -79,15 +79,15 @@ const AddDrone = () => {
                 <button type="button" onClick={()=>append("")}>Add sensor</button>
                 {errors.sensors?.root &&  <p className="error">{errors.sensors.root.message}</p>}
 
-                <h2>Safety Features</h2>
+                <h3>Safety Features</h3>
                 <div className="checkbox">
-                    <label htmlFor="return-home">Return home</label>
                     <input id="return-home" {...register("safetyFeatures.returnHome")} type="checkbox" />
+                    <label htmlFor="return-home">Return home</label>
                 </div>
 
                 <div className="checkbox">
-                    <label htmlFor="emergency-parachute">Emergency parachute</label>
                     <input id="emergency-parachute" {...register("safetyFeatures.emergencyParachute")} type="checkbox" />
+                    <label htmlFor="emergency-parachute">Emergency parachute</label>
                 </div>
                 {hasParachute && (
                     <div className="date">
