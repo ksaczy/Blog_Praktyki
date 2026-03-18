@@ -1,10 +1,13 @@
 import { Drone, DroneSchema } from "../Functionality/Drone"
 import { useForm, SubmitHandler, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react'
 import './AddDrone.scss';
 
 
 const AddDrone = () => {
+
+
 
     const {register, handleSubmit, watch, control, reset, formState: { errors, isSubmitting } } = useForm<Drone>({
         resolver: zodResolver(DroneSchema),
@@ -34,6 +37,10 @@ const AddDrone = () => {
     };
 
     const hasParachute = watch("safetyFeatures.emergencyParachute");
+
+    useEffect(() => {
+        if(fields.length===0)append("")
+    }, [append, fields]);
 
     return(
         <div className="add-drone">

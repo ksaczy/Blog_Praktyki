@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const DroneSchema = z.object({
     modelName: z.string().min(5),
-    serialNumber: z.string().regex(/^SN-[a-zA-Z]{4}-[0-9]{3}$/),
+    serialNumber: z.string().regex(/^SN-[a-zA-Z]{4}-[0-9]{3}$/, "Serial number has to follow pattern: SN-ABCD-123"),
     specs: z.object({
         maxSpeed: z.coerce.number().min(10).max(180),
         batteryType: z.enum(["Li-Po", "Li-Ion", "Solid State"] as const)
