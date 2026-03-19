@@ -1,31 +1,32 @@
-import {SyntheticEvent, useState} from "react";
-import {useHistory} from "react-router-dom";
+import { SyntheticEvent, useState } from "react";
+import { useHistory } from "react-router-dom";
 import './Create.scss';
 
 const Create = () => {
-    const [title,setTitle] = useState('');
+    const [title, setTitle] = useState('');
     const [body, setBody] = useState('');
     const [author, setAuthor] = useState('mario');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
     const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        const blog = {title, body, author, date};
+        const blog = { title, body, author, date };
 
         setIsLoading(true);
 
         fetch('http://localhost:8000/blogs', {
             method: 'POST',
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(blog),
-        }).then(() =>{
+        }).then(() => {
             console.log('new blog added');
             setIsLoading(false);
             history.push('/');
         })
     }
+
     return (
         <div className="create">
             <h2>Add a New Blog</h2>

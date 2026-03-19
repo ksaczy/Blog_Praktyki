@@ -43,6 +43,7 @@ const BlogList = ({ blogs, title }: BlogListProps) => {
                     <Link to={`/blogs/${blog.id}`}>
                         <h2>{blog.title}</h2>
                         <p>Written by {blog.author}</p>
+                        {blog.date && <p className="blog-date">Published: {blog.date}</p>}
                     </Link>
                 </div>
             ))}

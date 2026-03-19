@@ -60,9 +60,9 @@ const BlogDetails = () => {
             {blog && (
                 <article>
                     <h2>{blog.title}</h2>
-                    <p>Written by {blog.author}</p>
-                    <div>{blog.body}</div>
-                    <div>{blog.date}</div>
+                    <p className="author">Written by {blog.author}</p>
+                    {blog.date && <p className="date">Published on: {blog.date}</p>}
+                    <div className="body">{blog.body}</div>
                     <button onClick={handleClick}>delete</button>
                 </article>
             )}
