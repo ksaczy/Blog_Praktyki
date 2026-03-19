@@ -28,7 +28,7 @@ const AddDrone = () => {
         },
     });
 
-    const { append, remove, fields } = useFieldArray({control, name: "sensors" as const})
+    const { append, remove, fields } = useFieldArray({control, name: "sensors" as const}) //nie wiem dlaczego to się podkreśla na czerwono
 
     const onSubmit: SubmitHandler<Drone> = async (data) => {
         reset();
@@ -46,31 +46,31 @@ const AddDrone = () => {
         <div className="add-drone">
             <h1>Add Drone</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <label>Drone model:</label>
-                <input {...register("modelName")} type="text" placeholder="model" />
+                <label htmlFor="model-name">Drone model:</label>
+                <input id="model-name" {...register("modelName")} type="text" placeholder="model" />
                 {errors.modelName && <p className="error">{errors.modelName.message}</p>}
 
-                <label>Drone serial number:</label>
-                <input {...register("serialNumber")} type="text" placeholder="SN-XXXX-999" />
+                <label htmlFor="SN">Drone serial number:</label>
+                <input id="SN" {...register("serialNumber")} type="text" placeholder="SN-XXXX-999" />
                 {errors.serialNumber && <p className="error">{errors.serialNumber?.message}</p>}
 
                 <h3>Specs</h3>
-                <label>Drone max speed:</label>
-                <input {...register("specs.maxSpeed")} type="number" placeholder="max speed" />
+                <label htmlFor="max-speed">Drone max speed:</label>
+                <input id="max-speed" {...register("specs.maxSpeed")} type="number" placeholder="max speed" />
                 {errors.specs?.maxSpeed && <p className="error">{errors.specs.maxSpeed.message}</p>}
 
-                <label>Type of battery:</label>
-                <select {...register("specs.batteryType")}>
+                <label htmlFor="battery-type">Type of battery:</label>
+                <select id="battery-type" {...register("specs.batteryType")}>
                     <option>Li-Po</option>
                     <option>Li-Ion</option>
                     <option>Solid State</option>
                 </select>
 
-                <label>Sensors:</label>
+                <label htmlFor="sensors">Sensors:</label>
                 {fields.map((field, i) => (
                     <div key={field.id}>
                         <div className="sensor-field">
-                            <input {...register(`sensors.${i}`)} type="text"/>
+                            <input id="sensors" {...register(`sensors.${i}`)} type="text" placeholder="sensor name"/>
                             {fields.length>1 && <button type="button" onClick={()=>remove(i)}>delete</button>}
                         </div>
                         {errors.sensors?.[i] && <p className="error">{errors.sensors?.[i]?.message}</p>}
@@ -91,8 +91,8 @@ const AddDrone = () => {
                 </div>
                 {hasParachute && (
                     <div className="date">
-                        <label>Date of last parachute test:</label>
-                        <input {...register("safetyFeatures.parachuteTestDate", { shouldUnregister: true })} type="date" />
+                        <label htmlFor="test-date">Date of last parachute test:</label>
+                        <input id="test-date" { ...register("safetyFeatures.parachuteTestDate", { shouldUnregister: true })} type="date" />
                         {errors.safetyFeatures?.parachuteTestDate && <p className="error">{errors.safetyFeatures.parachuteTestDate.message}</p>}
                     </div>
                 )}
