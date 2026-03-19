@@ -16,6 +16,7 @@ const Navbar = () => {
                 <Link to="/create" onClick={() => setShowMenu(false)}>New Blog</Link>
                 <Link to="/galeria" onClick={() => setShowMenu(false)}>Galeria</Link>
                 <Link to="/team" onClick={() => setShowMenu(false)}>Team</Link>
+                <Link to="/add-drone" onClick={() => setShowMenu(false)}>Add Drone</Link>
             </div>
         </nav>
     );

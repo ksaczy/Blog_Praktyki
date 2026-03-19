@@ -7,6 +7,7 @@ import BlogDetails from "./Blog/BlogDetails";
 import NotFound from "./Pages/NotFound";
 import Galeria from "./Pages/Galeria";
 import Team from "./Pages/Team";
+import AddDrone from "./Pages/AddDrone";
 
 function App() {
     return (
@@ -29,6 +30,9 @@ function App() {
                         </Route>
                         <Route path="/team">
                             <Team />
+                        </Route>
+                        <Route path="/add-drone">
+                            <AddDrone />
                         </Route>
                         <Route path="*">
                             <NotFound />

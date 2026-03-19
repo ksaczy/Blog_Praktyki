@@ -1,0 +1,89 @@
+@use '../Global' as *;
+
+.add-drone {
+  max-width: 400px;
+  margin: 0 auto;
+
+  h1 {
+    color: $primary-pink;
+    margin-bottom: 30px;
+
+  }
+  h3{
+    color: $primary-pink;
+    margin-top: 30px;
+    margin-bottom: 20px;
+  }
+
+  .sensor-field{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-wrap: nowrap;
+  }
+
+  label {
+    text-align: left;
+    display: block;
+    margin-top: 15px;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 6px 10px;
+    margin: 10px 0 2px;
+    border: 1px solid $border-light;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  .checkbox{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    cursor: pointer;
+    accent-color: $primary-pink;
+
+    & > input{
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    label {
+      margin: 0;
+      cursor: pointer;
+    }
+  }
+
+  .error{
+    color: red;
+    font-size: 12px;
+  }
+
+  .date{
+    margin-top: 15px;
+  }
+
+  button {
+    background: $primary-pink;
+    color: #fff;
+    border: 0;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: filter 0.2s;
+    margin: 10px 0 10px;
+
+    &:hover {
+      background-color: darken($primary-pink, 10%);
+    }
+
+    &:active {
+      transform: scale(0.90);
+    }
+  }
+}
