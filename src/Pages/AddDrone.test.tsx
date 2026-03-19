@@ -14,14 +14,16 @@ test("Formularz wysyła się poprawnie przy poprawnym wypełnieniu", async () =>
     userEvent.type(snInput, "SN-ABCD-123");
 
     const maxSpeed= screen.getByLabelText("Drone max speed:");
+    userEvent.clear(maxSpeed);
     userEvent.type(maxSpeed, "50");
+    expect(maxSpeed).toHaveValue(50);
 
     const batteryType = screen.getByLabelText("Type of battery:");
     userEvent.selectOptions(batteryType, "Li-Ion")
     expect(batteryType).toHaveValue("Li-Ion");
 
-    const sensors = screen.getByLabelText("Sensors:");
-    userEvent.type(sensors, "Sensor 1");
+    const sensor = screen.getByPlaceholderText("sensor name");
+    userEvent.type(sensor, "Sensor 1");
 
     const returnHome = screen.getByLabelText("Return home")
     userEvent.click(returnHome);
@@ -59,19 +61,20 @@ test("Sensory poprawnie się dodają i usuwają", async () => {
     userEvent.click(addBtn);
 
     const sensor2 = screen.getAllByPlaceholderText(/sensor name/i);
-    expect(sensor2[1]).toBeInTheDocument();
-    userEvent.type(sensor2[1], "test sensor name 2");
+    expect(sensor2[1]).toHaveValue("");
+
+    userEvent.type(sensor2[1]!, "test sensor name 2");
     userEvent.click(addBtn);
 
     const sensor3 = screen.getAllByPlaceholderText(/sensor name/i);
-    expect(sensor3[2]).toBeInTheDocument(); //sprawdzam linijkę wcześniej czy istenieje a ts i tak podkreśla na czerwono (przynajmniej czasami)
-    userEvent.type(sensor3[2], "test sensor name 3");
+    expect(sensor3[2]).toBeInTheDocument();
+    userEvent.type(sensor3[2]!, "test sensor name 3");
 
     expect(sensor3.length).toBe(3);
 
     const deletes = screen.getAllByText(/delete/i);
-    userEvent.click(deletes[2]);
-    userEvent.click(deletes[0]);
+    userEvent.click(deletes[2]!);
+    userEvent.click(deletes[0]!);
 
     const sensors= screen.getAllByPlaceholderText(/sensor name/i);
     expect(sensors).toHaveLength(1);

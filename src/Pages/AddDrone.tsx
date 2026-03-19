@@ -28,7 +28,7 @@ const AddDrone = () => {
         },
     });
 
-    const { append, remove, fields } = useFieldArray({control, name: "sensors" as const}) //nie wiem dlaczego to się podkreśla na czerwono
+    const { append, remove, fields } = useFieldArray({control, name: "sensors"})//Tak jak mówiłem, to raz się podkreśla na czerwono, a raz nie... (napisanie tego komentarza naprawiło podkreślenie)
 
     const onSubmit: SubmitHandler<Drone> = async (data) => {
         reset();
@@ -38,7 +38,7 @@ const AddDrone = () => {
 
     const hasParachute = watch("safetyFeatures.emergencyParachute");
 
-    useEffect(() => {
+    useEffect(() => {//To nie jest najpiękniejsze rozwiązanie, ale dodanie "" do default values nie pomaga i nie mam lepszego pomysłu
         if(fields.length===0)append("")
     }, [append, fields]);
 
@@ -70,7 +70,7 @@ const AddDrone = () => {
                 {fields.map((field, i) => (
                     <div key={field.id}>
                         <div className="sensor-field">
-                            <input id="sensors" {...register(`sensors.${i}`)} type="text" placeholder="sensor name"/>
+                            <input id={"sensors"+i} {...register(`sensors.${i}`)} type="text" placeholder="sensor name" aria-label={"Sensor name "+i}/>
                             {fields.length>1 && <button type="button" onClick={()=>remove(i)}>delete</button>}
                         </div>
                         {errors.sensors?.[i] && <p className="error">{errors.sensors?.[i]?.message}</p>}
