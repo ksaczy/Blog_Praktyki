@@ -39,7 +39,7 @@ const Team = () => {
                     slideShadows: false,
                 }}
                 autoplay={{
-                    delay: 3000,
+                    delay: 2000,
                     disableOnInteraction: false,
                 }}
                 modules={[EffectCoverflow, Pagination, Autoplay]}
