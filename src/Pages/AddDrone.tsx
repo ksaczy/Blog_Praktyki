@@ -54,7 +54,7 @@ const AddDrone = () => {
 
 
     return(
-        <div className="add-drone">
+        <div className="form">
             <h1>Add Drone</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <InputField

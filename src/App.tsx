@@ -8,9 +8,13 @@ import NotFound from "./Pages/NotFound";
 import Galeria from "./Pages/Galeria";
 import Team from "./Pages/Team";
 import AddDrone from "./Pages/AddDrone";
+import Login from "./Pages/Authentication/Login"
+import Register from "./Pages/Authentication/Register";
+import {AuthProvider} from "./AuthContext";
 
 function App() {
     return (
+        <AuthProvider>
         <Router>
             <div className="App">
                 <Navbar />
@@ -34,6 +38,12 @@ function App() {
                         <Route path="/add-drone">
                             <AddDrone />
                         </Route>
+                        <Route path="/login">
+                            <Login />
+                        </Route>
+                        <Route path="/register">
+                            <Register />
+                        </Route>
                         <Route path="*">
                             <NotFound />
                         </Route>
@@ -41,6 +51,7 @@ function App() {
                 </div>
             </div>
         </Router>
+        </AuthProvider>
     );
 }
 
