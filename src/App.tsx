@@ -1,7 +1,7 @@
 import './index.scss';
 import Navbar from './Navbar/Navbar';
 import Home from './Pages/Home';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Create from "./Pages/Create";
 import BlogDetails from "./Blog/BlogDetails";
 import NotFound from "./Pages/NotFound";
@@ -10,47 +10,37 @@ import Team from "./Pages/Team";
 import AddDrone from "./Pages/AddDrone";
 import Login from "./Pages/Authentication/Login"
 import Register from "./Pages/Authentication/Register";
-import {AuthProvider} from "./AuthContext";
+import { AuthProvider } from "./AuthContext";
 
 function App() {
     return (
         <AuthProvider>
-        <Router>
-            <div className="App">
-                <Navbar />
-                <div className="content">
-                    <Switch>
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
-                        <Route path="/create">
-                            <Create />
-                        </Route>
-                        <Route path="/blogs/:id">
-                            <BlogDetails />
-                        </Route>
-                        <Route path="/galeria">
-                            <Galeria />
-                        </Route>
-                        <Route path="/team">
-                            <Team />
-                        </Route>
-                        <Route path="/add-drone">
-                            <AddDrone />
-                        </Route>
-                        <Route path="/login">
-                            <Login />
-                        </Route>
-                        <Route path="/register">
-                            <Register />
-                        </Route>
-                        <Route path="*">
-                            <NotFound />
-                        </Route>
-                    </Switch>
+            <Router>
+                <div className="App">
+                    <Navbar />
+                    <div className="content">
+                        <Routes>
+                            <Route path="/" element={<Home />} />
+
+                            <Route path="/create" element={<Create />} />
+
+                            <Route path="/blogs/:id" element={<BlogDetails />} />
+
+                            <Route path="/galeria" element={<Galeria />} />
+
+                            <Route path="/team" element={<Team />} />
+
+                            <Route path="/add-drone" element={<AddDrone />} />
+
+                            <Route path="/login" element={<Login />} />
+
+                            <Route path="/register" element={<Register />} />
+
+                            <Route path="*" element={<NotFound />} />
+                        </Routes>
+                    </div>
                 </div>
-            </div>
-        </Router>
+            </Router>
         </AuthProvider>
     );
 }
