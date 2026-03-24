@@ -11,10 +11,13 @@ import AddDrone from "./Pages/AddDrone";
 import Login from "./Pages/Authentication/Login"
 import Register from "./Pages/Authentication/Register";
 import { AuthProvider } from "./AuthContext";
+import ProtectedRoute from "./ProtectedRoute";
+import {Toaster} from "react-hot-toast";
 
 function App() {
     return (
         <AuthProvider>
+            <Toaster />
             <Router>
                 <div className="App">
                     <Navbar />
@@ -26,11 +29,11 @@ function App() {
 
                             <Route path="/blogs/:id" element={<BlogDetails />} />
 
-                            <Route path="/galeria" element={<Galeria />} />
+                            <Route path="/galeria" element={<ProtectedRoute><Galeria /></ProtectedRoute>} />
 
-                            <Route path="/team" element={<Team />} />
+                            <Route path="/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
 
-                            <Route path="/add-drone" element={<AddDrone />} />
+                            <Route path="/add-drone" element={<ProtectedRoute><AddDrone /></ProtectedRoute>} />
 
                             <Route path="/login" element={<Login />} />
 

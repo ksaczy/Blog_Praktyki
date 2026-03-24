@@ -4,10 +4,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { User, UserSchema } from "./User";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../FirebaseConfig";
-import { Link } from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import { useAuth } from "../../AuthContext";
 import "../AddDrone.scss";
 import "./Auth.scss";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const { currentUser } = useAuth();
@@ -21,6 +22,7 @@ const Register = () => {
         try {
             await createUserWithEmailAndPassword(auth, data.email, data.password);
             reset();
+            toast.success("Registered successfuly");
         } catch (err: any) {
             if (err.code === "auth/email-already-in-use") {
                 setError("email", { message: "This email is already in use" });
@@ -29,6 +31,7 @@ const Register = () => {
             }
         }
     };
+    if(currentUser)return <Navigate to="/" />;
 
     return (
         <div className="form">
@@ -57,7 +60,6 @@ const Register = () => {
             <div className="information">
                 {errors.root && <p className="error">{errors.root.message}</p>}
                 <p>Already have an account? <Link to="/login">Click here</Link></p>
-                {currentUser && <h3>You are logged in as: {currentUser.email}</h3>}
             </div>
         </div>
     );

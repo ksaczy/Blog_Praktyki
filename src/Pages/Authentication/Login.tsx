@@ -4,14 +4,15 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {User, UserSchema} from "./User";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../FirebaseConfig";
-import {Link} from "react-router-dom";
+import {Link, Navigate} from "react-router-dom";
 import "../AddDrone.scss";
 import "./Auth.scss";
 import {useAuth} from "../../AuthContext";
+import toast from "react-hot-toast";
 
 
 const Login = () =>{
-    const {register, handleSubmit, setError, reset, formState: { errors, isSubmitting } } = useForm<User>({
+    const {register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm<User>({
         resolver: zodResolver(UserSchema),
         mode: "onChange",
     });
@@ -21,13 +22,15 @@ const Login = () =>{
     const onSubmit: SubmitHandler<User> = async (data) => {
         try{
             await signInWithEmailAndPassword(auth, data.email, data.password);
-            reset();
+            toast.success("Login successfull");
         }
         catch(err:any){
             setError("root", {message:"Invalid email or password"});
         }
 
     };
+
+    if(currentUser)return <Navigate to="/" />;
 
     return(
         <div className="form">
@@ -51,7 +54,6 @@ const Login = () =>{
             </form>
             <div className="information">
                 {errors.root &&  <p className="error">{errors.root.message}</p>}
-                {currentUser && <h3>You are logged in as: {currentUser.email}</h3>}
                 <p>No account? <Link to="/register">Click here</Link></p>
             </div>
         </div>
