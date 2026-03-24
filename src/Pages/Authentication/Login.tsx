@@ -1,7 +1,7 @@
 import {InputField} from "../InputField"
 import {SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {User, UserSchema} from "./User";
+import {LoginData, LoginSchema} from "./User";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../FirebaseConfig";
 import {Link, Navigate} from "react-router-dom";
@@ -12,17 +12,17 @@ import toast from "react-hot-toast";
 
 
 const Login = () =>{
-    const {register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm<User>({
-        resolver: zodResolver(UserSchema),
+    const {register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm<LoginData>({
+        resolver: zodResolver(LoginSchema),
         mode: "onChange",
     });
 
     const { currentUser } = useAuth();
 
-    const onSubmit: SubmitHandler<User> = async (data) => {
+    const onSubmit: SubmitHandler<LoginData> = async (data) => {
         try{
             await signInWithEmailAndPassword(auth, data.email, data.password);
-            toast.success("Login successfull");
+            toast.success("Login successful");
         }
         catch(err:any){
             setError("root", {message:"Invalid email or password"});
@@ -30,7 +30,9 @@ const Login = () =>{
 
     };
 
-    if(currentUser)return <Navigate to="/" />;
+    if(currentUser){
+        return <Navigate to="/" />;
+    }
 
     return(
         <div className="form">

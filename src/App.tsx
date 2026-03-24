@@ -10,6 +10,7 @@ import Team from "./Pages/Team";
 import AddDrone from "./Pages/AddDrone";
 import Login from "./Pages/Authentication/Login"
 import Register from "./Pages/Authentication/Register";
+import Profile from "./Pages/Authentication/Profile";
 import { AuthProvider } from "./AuthContext";
 import ProtectedRoute from "./ProtectedRoute";
 import {Toaster} from "react-hot-toast";
@@ -27,6 +28,7 @@ function App() {
 
                             <Route path="/create" element={<Create />} />
 
+
                             <Route path="/blogs/:id" element={<BlogDetails />} />
 
                             <Route path="/galeria" element={<ProtectedRoute><Galeria /></ProtectedRoute>} />
@@ -34,6 +36,9 @@ function App() {
                             <Route path="/team" element={<ProtectedRoute><Team /></ProtectedRoute>} />
 
                             <Route path="/add-drone" element={<ProtectedRoute><AddDrone /></ProtectedRoute>} />
+
+                            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+
 
                             <Route path="/login" element={<Login />} />
 

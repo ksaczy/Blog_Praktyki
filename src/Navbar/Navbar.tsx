@@ -1,11 +1,9 @@
 import {Link} from 'react-router-dom';
 import './Navbar.scss';
 import React, { useState } from 'react';
-import { useAuth } from "../AuthContext";
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
-    const { logout } = useAuth();
 
     return (
         <nav className="navbar">
@@ -21,7 +19,7 @@ const Navbar = () => {
                 <Link to="/team" onClick={() => setShowMenu(false)}>Team</Link>
                 <Link to="/add-drone" onClick={() => setShowMenu(false)}>Add Drone</Link>
                 <Link to="/login" onClick={() => setShowMenu(false)}>Login</Link>
-                <Link to="/" onClick={()=>logout()}>Logout</Link>
+                <Link to="/profile" onClick={() => setShowMenu(false)}>Profile</Link>
             </div>
         </nav>
     );

@@ -1,7 +1,7 @@
 import { InputField } from "../InputField";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { User, UserSchema } from "./User";
+import {RegisterData, RegisterSchema} from "./User";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../FirebaseConfig";
 import {Link, Navigate} from "react-router-dom";
@@ -13,16 +13,16 @@ import toast from "react-hot-toast";
 const Register = () => {
     const { currentUser } = useAuth();
 
-    const { register, handleSubmit, setError, reset, formState: { errors, isSubmitting } } = useForm<User>({
-        resolver: zodResolver(UserSchema),
+    const { register, handleSubmit, setError, reset, formState: { errors, isSubmitting } } = useForm<RegisterData>({
+        resolver: zodResolver(RegisterSchema),
         mode: "onChange",
     });
 
-    const onSubmit: SubmitHandler<User> = async (data) => {
+    const onSubmit: SubmitHandler<RegisterData> = async (data) => {
         try {
             await createUserWithEmailAndPassword(auth, data.email, data.password);
             reset();
-            toast.success("Registered successfuly");
+            toast.success("Registered successfully");
         } catch (err: any) {
             if (err.code === "auth/email-already-in-use") {
                 setError("email", { message: "This email is already in use" });
@@ -49,6 +49,13 @@ const Register = () => {
                     label="Password: "
                     error={errors.password}
                     register={register("password")}
+                    type="password"
+                />
+                <InputField
+                    name="passwordRepeat"
+                    label="Repeat password: "
+                    error={errors.passwordRepeat}
+                    register={register("passwordRepeat")}
                     type="password"
                 />
 
