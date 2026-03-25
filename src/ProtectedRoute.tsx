@@ -16,6 +16,7 @@ const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
 
     if(loading)return <div>Loading...</div>;
     if(!currentUser){
+        toast.error("You have to log in to access this site", { id: "no-access" });
         return <Navigate to="/login" />;
     }
     return <>{children}</>;

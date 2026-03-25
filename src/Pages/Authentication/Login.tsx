@@ -2,8 +2,8 @@ import {InputField} from "../InputField"
 import {SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {LoginData, LoginSchema} from "./User";
-import {signInWithEmailAndPassword} from "firebase/auth";
-import {auth} from "../../FirebaseConfig";
+import {signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
+import {auth, googleAuth} from "../../FirebaseConfig";
 import {Link, Navigate} from "react-router-dom";
 import "../AddDrone.scss";
 import "./Auth.scss";
@@ -30,6 +30,16 @@ const Login = () =>{
 
     };
 
+    const onGoogleSignIn = async ()=>{
+        try {
+            await signInWithPopup(auth, googleAuth);
+            toast.success("Login successful");
+        }
+        catch(err:any){
+            setError("root", {message:"Something went wrong logging in with google"});
+        }
+    }
+
     if(currentUser){
         return <Navigate to="/" />;
     }
@@ -53,6 +63,12 @@ const Login = () =>{
                     type="password"
                 />
                 <button disabled={isSubmitting}>{isSubmitting? "Loading..." : "Login"}</button>
+                <p>
+                    <button className="google-sign-in" type="button" onClick={()=>onGoogleSignIn()}>
+                        Sign in with google
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="google logo"/>
+                    </button>
+                </p>
             </form>
             <div className="information">
                 {errors.root &&  <p className="error">{errors.root.message}</p>}

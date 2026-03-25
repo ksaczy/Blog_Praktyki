@@ -1,6 +1,28 @@
+@use "../../Global" as *;
+
 .form{
   text-align: center;
+  h1{
+    color: $primary-pink;
+  }
   .error{
     font-size: large;
+    color: red;
+  }
+
+  .google-sign-in{
+    background-color: white;
+    border: 2px solid $primary-pink;
+    color: $primary-pink;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    img{
+      margin-left: 5px;
+    }
   }
 }
+@include standardForm;

@@ -1,14 +1,15 @@
 import { InputField } from "../InputField";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {RegisterData, RegisterSchema} from "./User";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../FirebaseConfig";
+import { RegisterData, RegisterSchema} from "./User";
+import {createUserWithEmailAndPassword, signInWithPopup} from "firebase/auth";
+import {auth, googleAuth} from "../../FirebaseConfig";
 import {Link, Navigate} from "react-router-dom";
 import { useAuth } from "../../AuthContext";
 import "../AddDrone.scss";
 import "./Auth.scss";
 import toast from "react-hot-toast";
+import {useState} from "react";
 
 const Register = () => {
     const { currentUser } = useAuth();
@@ -17,6 +18,8 @@ const Register = () => {
         resolver: zodResolver(RegisterSchema),
         mode: "onChange",
     });
+
+    const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
 
     const onSubmit: SubmitHandler<RegisterData> = async (data) => {
         try {
@@ -31,6 +34,17 @@ const Register = () => {
             }
         }
     };
+
+    const onGoogleSignIn = async ()=>{
+        try {
+            await signInWithPopup(auth, googleAuth);
+            toast.success("Login successful");
+        }
+        catch(err:any){
+            setError("root", {message:"Something went wrong logging in with google"});
+        }
+    }
+
     if(currentUser)return <Navigate to="/" />;
 
     return (
@@ -44,13 +58,16 @@ const Register = () => {
                     register={register("email")}
                     type="email"
                 />
-                <InputField
+                <div className="input-with-button">
+                    <InputField
                     name="password"
                     label="Password: "
                     error={errors.password}
                     register={register("password")}
-                    type="password"
-                />
+                    type={passwordVisibility ? "text" : "password"}
+                    />
+                    <button type="button" onClick={()=>setPasswordVisibility(!passwordVisibility)}>{ passwordVisibility ? "hide" : "show"}</button>
+                </div>
                 <InputField
                     name="passwordRepeat"
                     label="Repeat password: "
@@ -62,6 +79,13 @@ const Register = () => {
                 <button disabled={isSubmitting}>
                     {isSubmitting ? "Registering..." : "Register"}
                 </button>
+
+                <p>
+                    <button className="google-sign-in" type="button" onClick={()=>onGoogleSignIn()}>
+                        Sign up with google
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="google logo"/>
+                    </button>
+                </p>
             </form>
 
             <div className="information">
