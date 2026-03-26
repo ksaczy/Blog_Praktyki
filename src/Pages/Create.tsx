@@ -1,5 +1,5 @@
 import {SyntheticEvent, useState} from "react";
-import {useHistory} from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import './Create.scss';
 
 const Create = () => {
@@ -8,7 +8,7 @@ const Create = () => {
     const [author, setAuthor] = useState('mario');
     const [date, setDate] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const handleSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
@@ -23,7 +23,7 @@ const Create = () => {
         }).then(() =>{
             console.log('new blog added');
             setIsLoading(false);
-            history.push('/');
+            navigate('/');
         })
     }
     return (

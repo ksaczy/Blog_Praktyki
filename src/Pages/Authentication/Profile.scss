@@ -1,0 +1,16 @@
+@use "../../Global" as *;
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  h1{
+    color: $primary-pink;
+  }
+
+  *{
+    margin: 10px;
+  }
+}

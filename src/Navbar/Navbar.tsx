@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 
 const Navbar = () => {
     const [showMenu, setShowMenu] = useState(false);
+
     return (
         <nav className="navbar">
             <h1>The Dojo Blog</h1>
@@ -17,6 +18,8 @@ const Navbar = () => {
                 <Link to="/galeria" onClick={() => setShowMenu(false)}>Galeria</Link>
                 <Link to="/team" onClick={() => setShowMenu(false)}>Team</Link>
                 <Link to="/add-drone" onClick={() => setShowMenu(false)}>Add Drone</Link>
+                <Link to="/login" onClick={() => setShowMenu(false)}>Login</Link>
+                <Link to="/profile" onClick={() => setShowMenu(false)}>Profile</Link>
             </div>
         </nav>
     );
