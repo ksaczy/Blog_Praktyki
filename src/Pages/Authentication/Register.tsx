@@ -20,6 +20,7 @@ const Register = () => {
     });
 
     const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
+    const [repeatPasswordVisibility, setRepeatPasswordVisibility] = useState<boolean>(false);
 
     const onSubmit: SubmitHandler<RegisterData> = async (data) => {
         try {
@@ -66,15 +67,22 @@ const Register = () => {
                     register={register("password")}
                     type={passwordVisibility ? "text" : "password"}
                     />
-                    <button type="button" onClick={()=>setPasswordVisibility(!passwordVisibility)}>{ passwordVisibility ? "hide" : "show"}</button>
+                    <button type="button" onClick={()=>setPasswordVisibility(!passwordVisibility)}>
+                        { passwordVisibility ? "hide" : "show"}
+                    </button>
                 </div>
-                <InputField
-                    name="passwordRepeat"
-                    label="Repeat password: "
-                    error={errors.passwordRepeat}
-                    register={register("passwordRepeat")}
-                    type="password"
-                />
+                <div className="input-with-button">
+                    <InputField
+                        name="passwordRepeat"
+                        label="Repeat password: "
+                        error={errors.passwordRepeat}
+                        register={register("passwordRepeat")}
+                        type={repeatPasswordVisibility ? "text" : "password"}
+                    />
+                    <button type="button" onClick={()=>setRepeatPasswordVisibility(!repeatPasswordVisibility)}>
+                        { repeatPasswordVisibility ? "hide" : "show"}
+                    </button>
+                </div>
 
                 <button disabled={isSubmitting}>
                     {isSubmitting ? "Registering..." : "Register"}

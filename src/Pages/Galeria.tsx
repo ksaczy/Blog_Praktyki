@@ -77,7 +77,7 @@ const Galeria = () => {
                     {images && images.map((imgNum, index) => (
                         <div className="img-container" key={imgNum.id}>
                             <img
-                                src={imgNum.download_url}
+                                src={`https://picsum.photos/id/${imgNum.id}/400`}
                                 alt={`Zdjęcie ${imgNum}`}
                                 onClick={() => handlePhotoClick(index)}
                             />

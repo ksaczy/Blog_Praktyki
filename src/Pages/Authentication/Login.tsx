@@ -9,13 +9,22 @@ import "../AddDrone.scss";
 import "./Auth.scss";
 import {useAuth} from "../../AuthContext";
 import toast from "react-hot-toast";
+import {useEffect, useState} from "react";
 
 
 const Login = () =>{
+    const [passwordVisibility, setPasswordVisibility] = useState<boolean>(false);
+
     const {register, handleSubmit, setError, formState: { errors, isSubmitting } } = useForm<LoginData>({
         resolver: zodResolver(LoginSchema),
         mode: "onChange",
     });
+
+    useEffect(() => {
+        if (currentUser) {
+            toast.error("User is logged in", { id: "already-logged" });
+        }
+    }, []);
 
     const { currentUser } = useAuth();
 
@@ -33,7 +42,7 @@ const Login = () =>{
     const onGoogleSignIn = async ()=>{
         try {
             await signInWithPopup(auth, googleAuth);
-            toast.success("Login successful");
+            toast.success("Login successful", {id: "login"});
         }
         catch(err:any){
             setError("root", {message:"Something went wrong logging in with google"});
@@ -43,6 +52,7 @@ const Login = () =>{
     if(currentUser){
         return <Navigate to="/" />;
     }
+
 
     return(
         <div className="form">
@@ -55,13 +65,18 @@ const Login = () =>{
                     register={register("email")}
                     type="email"
                 />
-                <InputField
-                    name="password"
-                    label="Password: "
-                    error={errors.password}
-                    register={register("password")}
-                    type="password"
-                />
+                <div className="input-with-button">
+                    <InputField
+                        name="password"
+                        label="Password: "
+                        error={errors.password}
+                        register={register("password")}
+                        type={passwordVisibility ? "text" : "password"}
+                    />
+                    <button type="button" onClick={()=>setPasswordVisibility(!passwordVisibility)}>
+                        { passwordVisibility ? "hide" : "show"}
+                    </button>
+                </div>
                 <button disabled={isSubmitting}>{isSubmitting? "Loading..." : "Login"}</button>
                 <p>
                     <button className="google-sign-in" type="button" onClick={()=>onGoogleSignIn()}>
